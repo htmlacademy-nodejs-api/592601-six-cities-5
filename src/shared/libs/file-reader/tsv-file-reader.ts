@@ -1,7 +1,7 @@
 import { FileReader } from './file-reader.interface.js';
 import { readFileSync } from 'node:fs';
 import { CoordinatesType, Offer } from '../../types/index.js';
-import { UserTypeEnum } from '../../enums/index.js';
+import { HousingTypeEnum, UserTypeEnum } from '../../enums/index.js';
 
 export class TSVFileReader implements FileReader {
   private rawData: string = '';
@@ -37,7 +37,7 @@ export class TSVFileReader implements FileReader {
     return parsed;
   }
 
-  getCoordinatesByCity(city: string): CoordinatesType {
+  private getCoordinatesByCity(city: string): CoordinatesType {
     let coordinates;
     switch (city){
       case 'Paris':
@@ -64,6 +64,22 @@ export class TSVFileReader implements FileReader {
     return coordinates;
   }
 
+  private getOfferType(typeString: string): HousingTypeEnum {
+    let type;
+    if (typeString === HousingTypeEnum.Apartment) {
+      type = HousingTypeEnum.Apartment;
+    } else if (typeString === HousingTypeEnum.House) {
+      type = HousingTypeEnum.House;
+    } else if(typeString === HousingTypeEnum.Room) {
+      type = HousingTypeEnum.Room;
+    } else if(typeString === HousingTypeEnum.Hotel) {
+      type = HousingTypeEnum.Hotel;
+    } else {
+      type = HousingTypeEnum.unknown;
+    }
+    return type;
+  }
+
   public getOffer(): Offer[] {
     if (!this.rawData) {
       throw new Error('File was not read');
@@ -78,15 +94,15 @@ export class TSVFileReader implements FileReader {
           postDate,
           city,
           previewImage,
-          // imagesDescribe,
+          imagesDescribe,
           isPremium,
           isFavorite,
           ratio,
-          // type,
+          type,
           numberRooms,
           numberGuests,
           price,
-          // conveniences,
+          conveniences,
           firstname,
           email,
           avatar,
@@ -99,16 +115,16 @@ export class TSVFileReader implements FileReader {
         postDate: new Date(postDate),
         city,
         previewImage,
-        // imagesDescribe: imagesDescribe.split(', ').map((item) => ({item})),
+        imagesDescribe: imagesDescribe.split(', ').map((item) => (item)),
         isPremium: isPremium === 'true',
         isFavorite: isFavorite === 'true',
         ratio: this.toNumber(ratio, 0),
-        // type: HousingTypeEnum[type],
+        type: this.getOfferType(String(type)),
         numberRooms: this.toNumber(numberRooms, 2),
         numberGuests: this.toNumber(numberGuests, 3),
         price: this.toNumber(price, 0),
-        // conveniences: conveniences.split(';').map((item) => ({item})),
-        user: {firstname, email, avatar, password, type: UserTypeEnum[userType as 'Ordinary' | 'Pro'] },
+        conveniences: conveniences.split(';').map((convenience) => ({convenience})),
+        user: {firstname, email, avatar, password, type: userType === UserTypeEnum.Ordinary ? UserTypeEnum.Ordinary : UserTypeEnum.Pro},
         numberComments: 0,
         coordinates: this.getCoordinatesByCity(city)
       }))
