@@ -1,23 +1,22 @@
-// import { User } from './user.type.js';
-// import { ConveniencesEnum, HousingTypeEnum } from '../enums/index.js';
-// import { CoordinatesType } from './coordinates.type.js';
+import { User } from './user.type.js';
+import { CoordinatesType } from './coordinates.type.js';
 
 export type Offer = {
   name: string;
   description: string;
-  // postDate: Date;
-  // city: string;
-  // previewImage: string;
+  postDate: Date;
+  city: string;
+  previewImage: string;
   // imagesDescribe: string[];
-  // isPremium: boolean;
-  // isFavorite: boolean;
-  // ratio: number;
+  isPremium: boolean;
+  isFavorite: boolean;
+  ratio: number;
   // type: HousingTypeEnum,
-  // numberRooms: number,
-  // numberGuests: number,
-  // price: number;
+  numberRooms: number,
+  numberGuests: number,
+  price: number;
   // conveniences: ConveniencesEnum[];
-  // user: User;
-  // numberComments: number,
-  // coordinates: CoordinatesType
+  user: User;
+  numberComments: number,
+  coordinates: CoordinatesType
 }
