@@ -1,0 +1,78 @@
+{
+  "api": {
+    "titles": [
+      "Сарай",
+      "Таунхаус",
+      "Однушка на Лямере",
+      "Трёшка без мебели",
+      "Kreenholm",
+      "Особняк в центре города",
+      "Двухкомнатная с комфортом",
+      "Конфернт зал"
+    ],
+    "type": [
+      "Apartment",
+      "House",
+      "Room",
+      "Hotel"
+    ],
+    "descriptions": [
+      "Комфорное вместительное помещение",
+      "Шикарные аппортоменты в центре города",
+      "Уютное гнёздышко для молодой семьи, курящих просьба не беспокоить",
+      "Отличное место с возможностью свободной планировки",
+      "Отдельный дом, нуждается в косметическом ремонте. Торг возможен",
+      "Приватная жизнь гарантирована ))",
+      "Съем от трёх суток",
+      "Оплата почасовая, зал находится на цокольном этаже, удобства имеются"
+    ],
+    "offerImages": [
+      "apartment-small-03.jpg",
+      "studio-photos.jpg",
+      "dark-tower.jpg",
+      "shining.jpg",
+      "draft.jpg",
+      "magic.jpg"
+    ],
+    "categoryImages": [
+      "category-book.jpg",
+      "category-disk.jpg",
+      "category-home.jpg",
+      "category-games.jpg",
+      "category-entertainment.jpg",
+      "category-films.jpg"
+    ],
+    "city": [
+      "Paris", "Cologne", "Brussels", "Amsterdam", "Hamburg", "Dusseldorf"
+    ],
+    "users": [
+      "Пьер Зишар",
+      "Роланд Дискейн",
+      "Холи Гибни",
+      "Джек Торренс",
+      "Антон Городецкий",
+      "Борис Гесер",
+      "Рокки Бальбоа",
+      "Джон Смит"
+    ],
+    "emails": [
+      "snow@pisem.local",
+      "president@dka.local",
+      "fish@big.local",
+      "test@pisem.local",
+      "freedom@pisem.local",
+      "rolan@pochta.local",
+      "author@mir.local",
+      "test@lost.loca",
+      "kujo-fan@story.local"
+    ],
+    "avatars": [
+      "user.jpg",
+      "photo.jpg",
+      "awesome-avatar.jpg",
+      "roland.jpg",
+      "smite.jpg",
+      "coffee.jpg"
+    ]
+  }
+}
