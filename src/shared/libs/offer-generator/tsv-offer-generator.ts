@@ -20,6 +20,7 @@ export class TSVOfferGenerator implements OfferGeneratorInterface {
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
 
+    console.log('postDate', postDate);
     const city = getRandomItem<string>(this.mockData.cities);
     const previewImage = getRandomItem<string>(this.mockData.previewImages);
     const imagesDescribe = getRandomItem<string>(this.mockData.imagesDescribe);

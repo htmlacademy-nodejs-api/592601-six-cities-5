@@ -4,6 +4,7 @@ import { MockServerData } from '../../shared/types/index.js';
 import { TSVOfferGenerator } from '../../shared/libs/offer-generator/index.js';
 import { getErrorMessage } from '../../shared/heplpers/index.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
+// import { appendFile } from 'node:fs/promises';
 
 export class GenerateCommand implements Command {
   private initialData!: MockServerData;
@@ -11,6 +12,7 @@ export class GenerateCommand implements Command {
   private async load(url: string) {
     try {
       this.initialData = await got.get(url).json();
+      console.log('this.initialData', this.initialData);
     } catch {
       throw new Error(`Can't load data from ${url}`);
     }
@@ -19,9 +21,19 @@ export class GenerateCommand implements Command {
   private async write(filepath: string, offerCount: number) {
     const tsvOfferGenerator = new TSVOfferGenerator(this.initialData);
     const tsvFileWriter = new TSVFileWriter(filepath);
+    // console.log('tsvFileWriter', tsvFileWriter);
 
     for (let i = 0; i < offerCount; i++) {
-      await tsvFileWriter.write(tsvOfferGenerator.generate());
+      const data = tsvOfferGenerator.generate();
+      console.log('tsvOfferGenerator.generate() ==> data', data);
+      await tsvFileWriter.write(data);
+
+      // напрямую без потоков
+      // await appendFile(
+      //   filepath,
+      //   `${tsvOfferGenerator.generate()}\n`,
+      //   {encoding: 'utf-8'}
+      // );
     }
   }
 
@@ -30,9 +42,6 @@ export class GenerateCommand implements Command {
   }
 
   public async execute(...parameters: string[]): Promise<void> {
-    console.log('parameters', parameters);
-    console.log('load', await this.load(''));
-    console.log('this.initialData', this.initialData);
     const [count, filepath, url] = parameters;
     const offerCount = Number.parseInt(count, 10);
 
@@ -41,7 +50,6 @@ export class GenerateCommand implements Command {
       await this.write(filepath, offerCount);
       console.info(`File ${filepath} was created!`);
     } catch (error: unknown) {
-      console.error('Can\'t generate data');
       console.error(getErrorMessage(error));
     }
   }

@@ -26,7 +26,6 @@ export class ImportCommand implements Command {
 
     try {
       await fileReader.read();
-      console.log(fileReader.getOffer());
     } catch (err) {
 
       if (!(err instanceof Error)) {
