@@ -2,13 +2,14 @@ import { FileReader } from './file-reader.interface.js';
 import { readFileSync } from 'node:fs';
 import { CoordinatesType, Offer } from '../../types/index.js';
 import { HousingTypeEnum, UserTypeEnum } from '../../enums/index.js';
+import EventEmitter from 'node:events';
 
-export class TSVFileReader implements FileReader {
+export class TSVFileReader extends EventEmitter implements FileReader {
   private rawData: string = '';
 
-  constructor(
-    private readonly filename: string
-  ) {}
+  constructor(private readonly filename: string) {
+    super();
+  }
 
   public read(): void {
     try {
@@ -21,6 +22,7 @@ export class TSVFileReader implements FileReader {
       }
     }
   }
+
 
   private toArray() {
     return this.rawData

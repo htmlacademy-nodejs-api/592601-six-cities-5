@@ -2,7 +2,7 @@ import got from 'got';
 import { Command } from './command.interface.js';
 import { MockServerData } from '../../shared/types/index.js';
 import { TSVOfferGenerator } from '../../shared/libs/offer-generator/index.js';
-// import { getErrorMessage } from '../../shared/helpers/index.js';
+import { getErrorMessage } from '../../shared/heplpers/index.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
 
 export class GenerateCommand implements Command {
@@ -33,16 +33,16 @@ export class GenerateCommand implements Command {
     console.log('parameters', parameters);
     console.log('load', await this.load(''));
     console.log('this.initialData', this.initialData);
-    // const [count, filepath, url] = parameters;
-    // const offerCount = Number.parseInt(count, 10);
+    const [count, filepath, url] = parameters;
+    const offerCount = Number.parseInt(count, 10);
 
-    // try {
-    //   await this.load(url);
-    //   await this.write(filepath, offerCount);
-    //   console.info(`File ${filepath} was created!`);
-    // } catch (error: unknown) {
-    //   console.error('Can\'t generate data');
-    //   console.error(getErrorMessage(error));
-    // }
+    try {
+      await this.load(url);
+      await this.write(filepath, offerCount);
+      console.info(`File ${filepath} was created!`);
+    } catch (error: unknown) {
+      console.error('Can\'t generate data');
+      console.error(getErrorMessage(error));
+    }
   }
 }

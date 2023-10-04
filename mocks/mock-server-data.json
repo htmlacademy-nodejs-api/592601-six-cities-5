@@ -1,6 +1,6 @@
 {
   "api": {
-    "titles": [
+    "names": [
       "Сарай",
       "Таунхаус",
       "Однушка на Лямере",
@@ -9,12 +9,6 @@
       "Особняк в центре города",
       "Двухкомнатная с комфортом",
       "Конфернт зал"
-    ],
-    "type": [
-      "Apartment",
-      "House",
-      "Room",
-      "Hotel"
     ],
     "descriptions": [
       "Комфорное вместительное помещение",
@@ -26,7 +20,10 @@
       "Съем от трёх суток",
       "Оплата почасовая, зал находится на цокольном этаже, удобства имеются"
     ],
-    "offerImages": [
+    "city": [
+      "Paris", "Cologne", "Brussels", "Amsterdam", "Hamburg", "Dusseldorf"
+    ],
+    "previewImages": [
       "apartment-small-03.jpg",
       "studio-photos.jpg",
       "dark-tower.jpg",
@@ -34,7 +31,7 @@
       "draft.jpg",
       "magic.jpg"
     ],
-    "categoryImages": [
+    "imagesDescribe": [
       "category-book.jpg",
       "category-disk.jpg",
       "category-home.jpg",
@@ -42,8 +39,14 @@
       "category-entertainment.jpg",
       "category-films.jpg"
     ],
-    "city": [
-      "Paris", "Cologne", "Brussels", "Amsterdam", "Hamburg", "Dusseldorf"
+    "conveniences": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
     ],
     "users": [
       "Пьер Зишар",
@@ -54,6 +57,16 @@
       "Борис Гесер",
       "Рокки Бальбоа",
       "Джон Смит"
+    ],
+    "passwords": [
+      "passwordPier",
+      "passwordRolland",
+      "passwordHoli",
+      "passwordDgeck",
+      "passwordAnton",
+      "passwordBoris",
+      "passwordRokki",
+      "passwordsGjon"
     ],
     "emails": [
       "snow@pisem.local",
