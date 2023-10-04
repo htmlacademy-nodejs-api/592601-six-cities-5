@@ -58,6 +58,44 @@ npm run ts -- <Путь к модулю с ts-кодом>
 
 Пакет `ts-node` позволяет выполнить TS-код в Node.js без предварительной компиляции. Используется только на этапе разработки.
 
+
+#### Перед запуском проекта необходимо поднять сервер с данными или mock-server
+
+```bash
+npm run mock:server
+```
+
+В процессе запуска команды будет доступен сервер на порте http://localhost:3123/api
+Для обновления данных в самом корне mock-server-data.json нужно перезапустить сервер.
+
+#### Сгенерировать мок данные можно через --generate 
+К примеру: npm run ts ./src/main.cli.ts -- --generate 10 ./mocks/test-data.tsv http://localhost:3123/api
+
+Где:
+1. ./src/main.cli.ts - это точка входа; 
+2. --generate 10 - это команда и количество данных, которые мы хотим сгенерирорват; 
+3. ./mocks/test-data.tsv - файл, куда сохранить сгенерированную информацию; 
+4. http://localhost:3123/api - от куда брать данные для генерации моковых данных.
+
+```bash
+npm run ts ./src/main.cli.ts -- --generate 10 ./mocks/test-data.tsv http://localhost:3123/api
+```
+
+
+**Для получение тестовых данных из файла** ./mocks/mocks-data.tsv можно использовать команду:
+```bash
+npm run ts ./src/main.cli.ts -- --import ./mocks/mocks-data.tsv
+```
+или 
+```bash
+npm run mocksDataTsv
+```
+
+
+
+В процессе запуска команды будет доступен сервер на порте http://localhost:3123/api
+Для обновления данных в самом корне mock-server-data.json нужно перезапустить сервер.
+
 #### Запустить проект
 
 ```bash
