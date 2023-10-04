@@ -11,6 +11,9 @@ export class TSVFileReader extends EventEmitter implements FileReader {
   }
 
   public async read(): Promise<void> {
+    // Если вне потоков, то можно читать файлы через встроенную функцию readFileSync
+    // import { readFileSync } from 'node:fs';
+    // this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
     const readStream = createReadStream(this.filename, {
       highWaterMark: CHUNK_SIZE,
       encoding: 'utf-8',
@@ -34,16 +37,4 @@ export class TSVFileReader extends EventEmitter implements FileReader {
 
     this.emit('end', importedRowCount);
   }
-
-  // public read(): void {
-  //   try {
-  //     this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
-  //     console.log('rawData', this.rawData);
-  //   } catch (error) {
-  //     console.error(`Failed to read version from ${this.filename}`);
-  //     if (error instanceof Error) {
-  //       console.error(error.message);
-  //     }
-  //   }
-  // }
 }
