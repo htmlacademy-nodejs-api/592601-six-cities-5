@@ -76,19 +76,22 @@ npm run mock:server
 2. --generate 10 - это команда и количество данных, которые мы хотим сгенерирорват; 
 3. ./mocks/test-data.tsv - файл, куда сохранить сгенерированную информацию; 
 4. http://localhost:3123/api - от куда брать данные для генерации моковых данных.
-
 ```bash
 npm run ts ./src/main.cli.ts -- --generate 10 ./mocks/test-data.tsv http://localhost:3123/api
 ```
+Или через
+```bash
+npm run generate10:mock-data
+```
 
 
-**Для получение тестовых данных из файла** ./mocks/mocks-data.tsv можно использовать команду:
+**Для получения тестовых данных из файла** ./mocks/mocks-data.tsv можно использовать команду:
 ```bash
 npm run ts ./src/main.cli.ts -- --import ./mocks/mocks-data.tsv
 ```
 или 
 ```bash
-npm run mocksDataTsv
+npm run import:mock-data
 ```
 
 
