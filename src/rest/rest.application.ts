@@ -1,5 +1,5 @@
 import { LoggerInterface } from '../shared/logger/index.js';
-import { Config } from '../shared/libs/config/index.js';
+import { Config, RestSchema } from '../shared/libs/config/index.js';
 
 export class RestApplication {
 
@@ -8,7 +8,7 @@ export class RestApplication {
     // тем самым наш RestApplication может работать с разными логерами
     // так как работает не с переменной, а с интерфейсом
     private readonly logger: LoggerInterface,
-    private readonly config: Config
+    private readonly config: Config<RestSchema>
   ) {}
 
   public async init() {
