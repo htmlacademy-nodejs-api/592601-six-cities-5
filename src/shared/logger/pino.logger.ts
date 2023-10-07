@@ -1,8 +1,34 @@
-import { Logger, pino } from 'pino';
+import { Logger, pino, transport } from 'pino';
 import { LoggerInterface } from './logger.interface.js';
+import { getCurrentModuleDirectoryPath } from '../heplpers/index.js';
+import { resolve } from 'node:path';
 
 export class PinoLogger implements LoggerInterface {
-  private readonly logger: Logger = pino();
+  private readonly logger: Logger;
+
+  constructor() {
+    const modulePath = getCurrentModuleDirectoryPath();
+    const logFilePath = 'logs/rest.log';
+    const destination = resolve(modulePath, '../../../', logFilePath);
+
+    const multiTransport = transport({
+      targets: [
+        { // вывод для логирования в файле logs/rest.log
+          target: 'pino/file',
+          options: { destination },
+          level: 'debug'
+        },
+        { // вывод для терминала
+          target: 'pino/file',
+          level: 'info',
+          options: {},
+        }
+      ],
+    });
+
+    this.logger = pino({}, multiTransport);
+    this.logger.info('Logger created…');
+  }
 
   public debug(message: string, ...args: unknown[]): void {
     this.logger.debug(message, ...args);
