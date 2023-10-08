@@ -20,7 +20,7 @@ async function bootstrap() {
   // const config = new RestConfig(logger);
   // const application = new RestApplication(logger, config);
 
-  const application = container.get<RestApplication>(RestApplication);
+  const application = container.get<RestApplication>(Component.RestApplication);
   await application.init();
 }
 
