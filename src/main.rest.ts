@@ -11,9 +11,10 @@ async function bootstrap() {
   // Bind - регистрируем зависимость, куда помещаем информацию о нашем классе или интерфейсе или о каком-то значении
   // которое хотим поместить в наш контейнер.
   // bind(тип)(сам компонент).поместить (to)в контейнер зависимостей и он будет соответствовать экземпляру класса RestApplication
-  container.bind<RestApplication>(Component.RestApplication).to(RestApplication);
-  container.bind<LoggerInterface>(Component.Logger).to(PinoLogger);
-  container.bind<Config<RestSchema>>(Component.Config).to(RestConfig);
+  // inSingletonScope - это указывает, что мы будем создавать только один экземпляр класса
+  container.bind<RestApplication>(Component.RestApplication).to(RestApplication).inSingletonScope();
+  container.bind<LoggerInterface>(Component.Logger).to(PinoLogger).inSingletonScope();
+  container.bind<Config<RestSchema>>(Component.Config).to(RestConfig).inSingletonScope();
 
   // Такой подход, если без использования inversify
   // const logger = new PinoLogger();
