@@ -1,6 +1,6 @@
 import { Logger, pino, transport } from 'pino';
 import { LoggerInterface } from './logger.interface.js';
-import { getCurrentModuleDirectoryPath } from '../heplpers/index.js';
+import { getCurrentModuleDirectoryPath } from '../helpers/index.js';
 import { resolve } from 'node:path';
 import { injectable } from 'inversify';
 

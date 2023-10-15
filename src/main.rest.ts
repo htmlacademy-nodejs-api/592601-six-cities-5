@@ -4,6 +4,7 @@ import { LoggerInterface, PinoLogger } from './shared/logger/index.js';
 import { RestApplication } from './rest/index.js';
 import { Config, RestConfig, RestSchema } from './shared/libs/config/index.js';
 import { Component } from './shared/types/index.js';
+import { DatabaseClient, MongoDatabaseClient } from './shared/libs/database-client/index.js';
 
 async function bootstrap() {
   const container = new Container(); // эта своего рода контейнер, в которой будут находиться все зависимости
@@ -15,6 +16,7 @@ async function bootstrap() {
   container.bind<RestApplication>(Component.RestApplication).to(RestApplication).inSingletonScope();
   container.bind<LoggerInterface>(Component.Logger).to(PinoLogger).inSingletonScope();
   container.bind<Config<RestSchema>>(Component.Config).to(RestConfig).inSingletonScope();
+  container.bind<DatabaseClient>(Component.DatabaseClient).to(MongoDatabaseClient).inSingletonScope();
 
   // Такой подход, если без использования inversify
   // const logger = new PinoLogger();
