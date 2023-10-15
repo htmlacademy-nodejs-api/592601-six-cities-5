@@ -31,7 +31,7 @@ export function createOffer(offerData: string): Offer {
     email,
     avatar,
     password,
-    type: userType === UserTypeEnum.Ordinary ? UserTypeEnum.Ordinary : UserTypeEnum.Pro
+    type: userType === UserTypeEnum.Regular ? UserTypeEnum.Regular : UserTypeEnum.Pro
   };
 
   return {

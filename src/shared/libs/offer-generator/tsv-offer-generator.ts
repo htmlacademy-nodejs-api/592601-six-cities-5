@@ -42,7 +42,7 @@ export class TSVOfferGenerator implements OfferGeneratorInterface {
 
     const numberComments = generateRandomValue(0, 10);
     const firstname = author.split(' ')[0];
-    const userType = getRandomItem([UserTypeEnum.Pro, UserTypeEnum.Ordinary]);
+    const userType = getRandomItem([UserTypeEnum.Pro, UserTypeEnum.Regular]);
     return [
       name,
       description,
