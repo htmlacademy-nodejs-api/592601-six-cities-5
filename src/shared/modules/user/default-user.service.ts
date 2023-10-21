@@ -1,4 +1,4 @@
-import { UserService } from './user-service.interface.js';
+import { UserServiceInterface } from './user-service.interface.js';
 import { DocumentType, types } from '@typegoose/typegoose';
 import { UserEntity } from './user.entity.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
@@ -7,7 +7,7 @@ import { Component } from '../../types/index.js';
 import { LoggerInterface } from '../../logger/index.js';
 
 @injectable()
-export class DefaultUserService implements UserService {
+export class DefaultUserService implements UserServiceInterface {
   constructor(
     @inject(Component.Logger) private readonly logger: LoggerInterface,
     @inject(Component.UserModel) private readonly userModel: types.ModelType<UserEntity>
