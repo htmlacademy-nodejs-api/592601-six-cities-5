@@ -1,7 +1,7 @@
 import { inject } from 'inversify';
 import { Component } from '../../types/index.js';
 import { DocumentType, types } from '@typegoose/typegoose';
-import { OfferServiceInterface } from './offer-service.interface';
+import { OfferServiceInterface } from './offer-service.interface.js';
 import { LoggerInterface } from '../../logger/index.js';
 import { OfferEntity } from './offer.entity.js';
 import { CreateOfferDto } from './dto/create-offer.dto.js';
@@ -18,21 +18,7 @@ export class DefaultOfferService implements OfferServiceInterface {
     return result;
   }
 
-  public async findByOfferId(categoryId: string): Promise<DocumentType<OfferEntity> | null> {
+  public async findById(categoryId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel.findById(categoryId).exec();
-  }
-
-  public async findByOfferName(offerName: string): Promise<DocumentType<OfferEntity> | null> {
-    return this.offerModel.findOne({name: offerName}).exec();
-  }
-
-  public async findByOfferNameOrCreate(offerName: string, dto: CreateOfferDto): Promise<DocumentType<OfferEntity>> {
-    const existedOffer = await this.findByOfferName(offerName);
-
-    if (existedOffer) {
-      return existedOffer;
-    }
-
-    return this.create(dto);
   }
 }
