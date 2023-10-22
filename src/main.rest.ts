@@ -1,27 +1,22 @@
 import 'reflect-metadata';
-import { Container } from 'inversify';
-import { LoggerInterface, PinoLogger } from './shared/logger/index.js';
 import { RestApplication } from './rest/index.js';
-import { Config, RestConfig, RestSchema } from './shared/libs/config/index.js';
 import { Component } from './shared/types/index.js';
+import { Container } from 'inversify';
+import { createRestApplicationContainer } from './rest/rest.container.js';
+import { createUserContainer } from './shared/modules/user/index.js';
+import { createFavouritesContainer } from './shared/modules/favourites/index.js';
+import { createOfferContainer } from './shared/modules/offer/index.js';
 
 async function bootstrap() {
-  const container = new Container(); // эта своего рода контейнер, в которой будут находиться все зависимости
+  // эта своего рода контейнер, в которой будут находиться все зависимости
+  const appContainer = Container.merge(
+    createRestApplicationContainer(),
+    createUserContainer(),
+    createFavouritesContainer(),
+    createOfferContainer(),
+  );
 
-  // Bind - регистрируем зависимость, куда помещаем информацию о нашем классе или интерфейсе или о каком-то значении
-  // которое хотим поместить в наш контейнер.
-  // bind(тип)(сам компонент).поместить (to)в контейнер зависимостей и он будет соответствовать экземпляру класса RestApplication
-  // inSingletonScope - это указывает, что мы будем создавать только один экземпляр класса
-  container.bind<RestApplication>(Component.RestApplication).to(RestApplication).inSingletonScope();
-  container.bind<LoggerInterface>(Component.Logger).to(PinoLogger).inSingletonScope();
-  container.bind<Config<RestSchema>>(Component.Config).to(RestConfig).inSingletonScope();
-
-  // Такой подход, если без использования inversify
-  // const logger = new PinoLogger();
-  // const config = new RestConfig(logger);
-  // const application = new RestApplication(logger, config);
-
-  const application = container.get<RestApplication>(Component.RestApplication);
+  const application = appContainer.get<RestApplication>(Component.RestApplication);
   await application.init();
 }
 

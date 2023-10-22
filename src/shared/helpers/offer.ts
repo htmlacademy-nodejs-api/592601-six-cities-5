@@ -21,7 +21,6 @@ export function createOffer(offerData: string): Offer {
     firstname,
     email,
     avatar,
-    password,
     userType,
     numberComments
   ] = offerData.replace('\n', '').split('\t');
@@ -30,8 +29,7 @@ export function createOffer(offerData: string): Offer {
     firstname,
     email,
     avatar,
-    password,
-    type: userType === UserTypeEnum.Ordinary ? UserTypeEnum.Ordinary : UserTypeEnum.Pro
+    type: userType === UserTypeEnum.Regular ? UserTypeEnum.Regular : UserTypeEnum.Pro
   };
 
   return {

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { OfferGeneratorInterface } from './offer-generator.interface.js';
 import { MockServerData } from '../../types/index.js';
-import { generateRandomValue, getRandomItem } from '../../heplpers/index.js';
+import { generateRandomValue, getRandomItem } from '../../helpers/index.js';
 import { HousingTypeEnum, UserTypeEnum } from '../../enums/index.js';
 
 const MIN_PRICE = 500;
@@ -42,7 +42,7 @@ export class TSVOfferGenerator implements OfferGeneratorInterface {
 
     const numberComments = generateRandomValue(0, 10);
     const firstname = author.split(' ')[0];
-    const userType = getRandomItem([UserTypeEnum.Pro, UserTypeEnum.Ordinary]);
+    const userType = getRandomItem([UserTypeEnum.Pro, UserTypeEnum.Regular]);
     return [
       name,
       description,
